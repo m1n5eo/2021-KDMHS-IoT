@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Humidity, Temperature</h1>
+  <div id="humidity"></div>
+  <div id="temperature"></div>
+  <button onclick="stop()">Stop Monitoring</button>
+  <script>
+    var timer = null;
+    timer = setInterval(monitor, 2000);
+    function monitor() {
+      fetch("/monitor")
+      .then(response=>response.text())
+      .then(data=> {
+        let obj = JSON.parse(data);
+        let h = document.querySelector("#humidity");
+        h.innerHTML = "<h2>Humidity: " + obj.humidity + "</h2>";
+        let t = document.querySelector("#temperature");
+        t.innerHTML = "<h2>Temperature: " + obj.temperature + "</h2>";
+      });
+    }
+    function stop() {
+      if (timer != null) {
+        clearInterval(timer);
+      }
+    }
+  </script>
+</body>
+</html>
