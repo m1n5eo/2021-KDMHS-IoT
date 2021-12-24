@@ -7,4 +7,5 @@
 3. dht11, pir sensor
 4. 4-digit FND, 7 segment
 5. LDR, OLED, dot matrix, LCD
-6. 
+6. PiCamera, OpenCV, PyAudio, pygame, dnn
+7. Flask
